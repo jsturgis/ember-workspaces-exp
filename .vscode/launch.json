@@ -8,10 +8,10 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "program": "/Users/jesturgi/.volta/bin/yarn workspaces run start"
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/addons/foo",
+      "program": "node_modules/.bin/ember",
+      "args": ["serve"]
     }
   ]
 }

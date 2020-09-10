@@ -5,7 +5,7 @@ const Funnel = require('broccoli-funnel');
 const merge = require('broccoli-merge-trees');
 const path = require('path');
 
-module.exports = function (defaults) {
+module.exports = function(defaults) {
   const testHarnessPath = path.join('../../main-app');
 
   let overrides = {
@@ -16,10 +16,7 @@ module.exports = function (defaults) {
       public: `${testHarnessPath}/public`,
       styles: `${testHarnessPath}/app/styles`,
       templates: `${testHarnessPath}/app/templates`,
-      tests: merge([
-        Funnel(`${testHarnessPath}/tests/test-support`),
-        Funnel('tests', { exclude: ['**/index.html'] }),
-      ]),
+      tests: merge([Funnel(`${testHarnessPath}/tests`, { exclude: ['**/*-test.js', ] }), Funnel('tests', { exclude: ['**/index.html'] })]),
       vendor: null,
     },
   };

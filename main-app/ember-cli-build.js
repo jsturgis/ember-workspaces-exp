@@ -1,7 +1,6 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-
 const { addInRepoTestsToHost } = require('ember-add-in-repo-tests');
 
 module.exports = function(defaults) {
