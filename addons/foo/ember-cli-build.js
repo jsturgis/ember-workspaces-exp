@@ -1,21 +1,25 @@
 'use strict';
-
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-// const Funnel = require('broccoli-funnel');
+
+const Funnel = require('broccoli-funnel');
+const merge = require('broccoli-merge-trees');
 const path = require('path');
 
-module.exports = function(defaults) {
-  const testHarnessPath = path.join('../../test-harness');
+module.exports = function (defaults) {
+  const testHarnessPath = path.join('../../main-app');
 
   let overrides = {
-    name: 'dummy',
+    name: 'main-app',
     configPath: `${testHarnessPath}/config/environment`,
     trees: {
       app: `${testHarnessPath}/app`,
       public: `${testHarnessPath}/public`,
       styles: `${testHarnessPath}/app/styles`,
       templates: `${testHarnessPath}/app/templates`,
-      tests: `tests`,
+      tests: merge([
+        Funnel(`${testHarnessPath}/tests/test-support`),
+        Funnel('tests', { exclude: ['**/index.html'] }),
+      ]),
       vendor: null,
     },
   };

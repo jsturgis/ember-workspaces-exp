@@ -2,9 +2,13 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
+const { addInRepoTestsToHost } = require('ember-add-in-repo-tests');
+
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    trees: {
+      tests: addInRepoTestsToHost(defaults.project, addon => addon.includeTestsInHost),
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
