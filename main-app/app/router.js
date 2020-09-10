@@ -3,10 +3,11 @@ import config from './config/environment';
 
 const Router = EmberRouter.extend({
   location: config.locationType,
-  rootURL: config.rootURL
+  rootURL: config.rootURL,
 });
 
-Router.map(function() {
+Router.map(function () {
+  this.mount('bar', { resetNamespace: true });
 });
 
 export default Router;
